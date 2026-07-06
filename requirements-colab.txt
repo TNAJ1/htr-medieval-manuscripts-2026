@@ -1,0 +1,11 @@
+# Dépendances pour Google Colab.
+# Colab a déjà numpy, scipy, opencv, torch, transformers à jour.
+# On n'installe QUE ce qui manque, SANS figer les versions,
+# pour éviter les conflits avec l'environnement Colab.
+
+peft
+editdistance
+jiwer
+jsonschema
+stanza
+networkx

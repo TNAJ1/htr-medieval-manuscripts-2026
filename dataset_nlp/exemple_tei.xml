@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Extrait du Roman de Brut</title>
+      </titleStmt>
+      <publicationStmt>
+        <p>Produit par le pipeline HTR-NLP du projet MD5.</p>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Transcription automatique de manuscrit médiéval.</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p>
+        <persName>Brut</persName>
+         tint 
+        <placeName>Engleterre</placeName>
+         et 
+        <persName>Charles</persName>
+         regna sur 
+        <placeName>France</placeName>
+         
+      </p>
+    </body>
+  </text>
+</TEI>

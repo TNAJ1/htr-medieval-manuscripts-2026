@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hetic.eu/schemas/htr-data-contract-v1.json",
+  "title": "Data Contract HTR → NLP",
+  "description": "Schéma du JSON produit par le pipeline HTR (Volet 1) et consommé par le pipeline NLP (Volet 2). Chaque champ a été pensé pour répondre aux besoins des deux volets.",
+  "type": "object",
+
+  "required": ["document_id", "metadata", "coordinate_system", "lines"],
+
+  "properties": {
+
+    "document_id": {
+      "type": "string",
+      "description": "Identifiant unique du manuscrit, ex: 'bnf-ms-fr-12483'."
+    },
+
+    "metadata": {
+      "type": "object",
+      "description": "Métadonnées du document, utilisées par le NLP pour la stratification (siècle, type).",
+      "required": ["century", "document_type", "language", "source"],
+      "properties": {
+        "century": {
+          "type": "integer",
+          "minimum": 8,
+          "maximum": 17,
+          "description": "Siècle du manuscrit (8 à 17). Sert à stratifier le split train/val/test."
+        },
+        "document_type": {
+          "type": "string",
+          "enum": ["texte_simple", "deux_colonnes", "registre_tabulaire"],
+          "description": "Type de mise en page de la page."
+        },
+        "language": {
+          "type": "string",
+          "description": "Langue dominante, ex: 'ancien_francais', 'moyen_francais', 'latin'."
+        },
+        "source": {
+          "type": "string",
+          "description": "Corpus d'origine, ex: 'CREMMA-Medieval', 'CATMuS'."
+        },
+        "license": {
+          "type": "string",
+          "description": "Licence du corpus source, ex: 'CC-BY-SA-4.0'."
+        }
+      }
+    },
+
+    "coordinate_system": {
+      "type": "object",
+      "description": "Système de coordonnées des polygones. Obligatoire pour l'interopérabilité PAGE XML.",
+      "required": ["origin", "unit"],
+      "properties": {
+        "origin": {
+          "type": "string",
+          "enum": ["top_left"],
+          "description": "Origine des coordonnées. Standard image = coin haut-gauche."
+        },
+        "unit": {
+          "type": "string",
+          "enum": ["pixel"],
+          "description": "Unité des coordonnées."
+        },
+        "image_width": {
+          "type": "integer",
+          "description": "Largeur de l'image source en pixels."
+        },
+        "image_height": {
+          "type": "integer",
+          "description": "Hauteur de l'image source en pixels."
+        }
+      }
+    },
+
+    "lines": {
+      "type": "array",
+      "description": "Liste des lignes de texte transcrites, dans l'ordre de lecture.",
+      "items": {
+        "type": "object",
+        "required": ["line_id", "text", "polygon", "confidence", "char_confidences", "needs_review"],
+        "properties": {
+
+          "line_id": {
+            "type": "string",
+            "description": "Identifiant unique de la ligne, ex: 'page001_line003'."
+          },
+
+          "reading_order": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Position de la ligne dans l'ordre de lecture (0 = première)."
+          },
+
+          "text": {
+            "type": "string",
+            "description": "Transcription textuelle de la ligne (sortie brute du HTR)."
+          },
+
+          "polygon": {
+            "type": "array",
+            "description": "Polygone délimitant la ligne sur l'image. Liste de points [x, y].",
+            "minItems": 3,
+            "items": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": { "type": "number" }
+            }
+          },
+
+          "confidence": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0,
+            "description": "Score de confiance global de la ligne (0=incertain, 1=sûr)."
+          },
+
+          "char_confidences": {
+            "type": "array",
+            "description": "Confiance par caractère. Le NLP l'utilise pour la correction guidée par confiance.",
+            "items": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            }
+          },
+
+          "candidates": {
+            "type": "array",
+            "description": "Lectures alternatives aux positions ambiguës. Utilisé par le NLP (MLM CamemBERT).",
+            "items": {
+              "type": "object",
+              "required": ["position", "options"],
+              "properties": {
+                "position": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Index du caractère ambigu dans 'text'."
+                },
+                "options": {
+                  "type": "array",
+                  "description": "Caractères candidats, ex: ['a', 'e', 'o'].",
+                  "items": { "type": "string" }
+                }
+              }
+            }
+          },
+
+          "needs_review": {
+            "type": "boolean",
+            "description": "True si la ligne est jugée incertaine et nécessite une relecture humaine."
+          }
+        }
+      }
+    }
+  }
+}
