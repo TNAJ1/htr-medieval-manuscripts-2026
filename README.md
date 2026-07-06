@@ -14,7 +14,7 @@ Image brute → Prétraitement → Segmentation → HTR → Data Contract JSON �
 ## Installation
 
 ```bash
-git clone https://github.com/<votre-equipe>/htr-medieval-manuscripts-2026.git
+git clone https://github.com/TANJ1/htr-medieval-manuscripts-2026.git
 cd htr-medieval-manuscripts-2026
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
@@ -110,7 +110,6 @@ segmentations/  fichiers PAGE XML
 | Fichier | Contenu |
 |---------|---------|
 | `ARTICLE_SCIENTIFIQUE.md` | Article complet (8-12 pages) |
-| `SCRIPT_SOUTENANCE.md` | Script oral + banque de questions |
 | `MD5_soutenance.pptx` | Présentation (11 slides) |
 | `CONVENTIONS_TRANSCRIPTION.md` | Choix éditoriaux HTR |
 | `CONVENTIONS_NLP.md` | Règles de normalisation |
@@ -133,7 +132,7 @@ segmentations/  fichiers PAGE XML
 ## État d'avancement
 
 **Fait** : pipeline HTR + NLP complet, data contract validé, 194 tests, article,
-présentation, analyse des biais.
+présentation, analyse des biais, entraînement réél sur corpus 
 
 **Reste** : entraînement réel sur corpus (infrastructure prête), mesure du CER,
 fine-tuning NER effectif.
