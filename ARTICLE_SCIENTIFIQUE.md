@@ -1,7 +1,8 @@
 # Reconnaissance et analyse automatiques de manuscrits médiévaux : un pipeline HTR + NLP reproductible
 
 **Projet MD5 — Master Data/IA**
-Équipe : *[Prénom Nom · Prénom Nom · Prénom Nom · Prénom Nom]*
+Équipe : *[TCHAPPI Romarique · BOUDJEKA Anik · NANGUI Dorcas
+ · Jordan NGUEKO]*
 
 ---
 
@@ -386,10 +387,10 @@ ouvriraient la voie à des éditions savantes assistées.
 
 | Membre | Rôle principal | Contributions |
 |--------|----------------|---------------|
-| *[Nom]* | Responsable technique | Architecture, revue de code, intégration |
-| *[Nom]* | Responsable données | Corpus, licences, data contract |
-| *[Nom]* | Responsable expérimentation | Métriques, journal des essais, courbes |
-| *[Nom]* | Responsable documentation | Article, README, fiche de modèle |
+| *[Jordan NGUEKO]* | Responsable technique | Architecture, revue de code, intégration |
+| *[TCHAPPI Romarique]* | Responsable données | Corpus, licences, data contract |
+| *[NANGUI Dorcas]* | Responsable expérimentation | Métriques, journal des essais, courbes |
+| *[BOUDJEKA Anik]* | Responsable documentation | Article, README, fiche de modèle |
 
 *Chaque membre a contribué transversalement aux deux volets et maîtrise
 l'ensemble du pipeline.*
