@@ -365,8 +365,6 @@ ouvriraient la voie à des éditions savantes assistées.
 
 ## Références
 
-*[À compléter selon les sources effectivement utilisées. Exemples de références
-à citer :]*
 
 - Consortium CREMMA — Reconnaissance d'Écriture Manuscrite des Matériaux
   Anciens. *[URL, année.]*
